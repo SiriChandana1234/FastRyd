@@ -57,18 +57,18 @@ import com.alpha.FastRyd.repository.VehicleRepository;
 	        return driverRepository.findByMobileNumber(mobileNumber);
 	    }
 	    
-//	    public String deleteDriverByMobileNumber(String mobileNumber) {
-//
-//	        Driver driver = driverRepository.findByMobileNumber(mobileNumber);
-//
-//	        if (driver == null) {
-//	            return "Driver not found with mobile number: " + mobileNumber;
-//	        }
-//
-//	        driverRepository.deleteById(driver.getId());
-//
-//	        return "Driver deleted successfully with mobile number: " + mobileNumber;
-//	    }
+	    public String deleteDriverByMobileNumber(String mobileNumber) {
+
+	        Driver driver = driverRepository.findByMobileNumber(mobileNumber);
+
+	        if (driver == null) {
+	            return "Driver not found with mobile number: " + mobileNumber;
+	        }
+
+	        driverRepository.deleteById(driver.getId());
+
+	        return "Driver deleted successfully with mobile number: " + mobileNumber;
+	    }
 	    
 	}
 

@@ -1,16 +1,13 @@
 package com.alpha.FastRyd.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.MapsId;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
 @Entity
 public class Vehicle {
 
     @Id
-    private Long id;   // This will be SAME as driver_id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private String name;
     private String vehicleNumber;
@@ -20,11 +17,27 @@ public class Vehicle {
     private String currentCity;
     private String availabilityStatus;
     private double pricePerKilometer;
-
-    @OneToOne
-    @MapsId   // <-- THIS makes Vehicle ID = Driver ID
-    @JoinColumn(name = "id") // vehicle.id = driver.id
+    @OneToOne(optional = true)
+    @JoinColumn(name = "driver_id", nullable = true)
     private Driver driver;
+
+
+
+    public Vehicle() {}
+
+    public Vehicle(String name, String vehicleNumber, String type, String model,
+                   int capacity, String currentCity, String availabilityStatus,
+                   double pricePerKilometer, Driver driver) {
+        this.name = name;
+        this.vehicleNumber = vehicleNumber;
+        this.type = type;
+        this.model = model;
+        this.capacity = capacity;
+        this.currentCity = currentCity;
+        this.availabilityStatus = availabilityStatus;
+        this.pricePerKilometer = pricePerKilometer;
+        this.driver = driver;
+    }
 
 	public Long getId() {
 		return id;
@@ -106,9 +119,18 @@ public class Vehicle {
 		this.driver = driver;
 	}
 
-	public Vehicle(String name, String vehicleNumber, String type, String model, int capacity, String currentCity,
-			String availabilityStatus, double pricePerKilometer, Driver driver) {
+	@Override
+	public String toString() {
+		return "Vehicle [id=" + id + ", name=" + name + ", vehicleNumber=" + vehicleNumber + ", type=" + type
+				+ ", model=" + model + ", capacity=" + capacity + ", currentCity=" + currentCity
+				+ ", availabilityStatus=" + availabilityStatus + ", pricePerKilometer=" + pricePerKilometer
+				+ ", driver=" + driver + "]";
+	}
+
+	public Vehicle(Long id, String name, String vehicleNumber, String type, String model, int capacity,
+			String currentCity, String availabilityStatus, double pricePerKilometer, Driver driver) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.vehicleNumber = vehicleNumber;
 		this.type = type;
@@ -120,11 +142,6 @@ public class Vehicle {
 		this.driver = driver;
 	}
 
-	public Vehicle() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
     
-    
+    // getters + setters (same as before)
 }

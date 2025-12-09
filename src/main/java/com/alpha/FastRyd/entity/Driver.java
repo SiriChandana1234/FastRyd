@@ -122,6 +122,11 @@ package com.alpha.FastRyd.entity;
 	    public void setVehicle(Vehicle vehicle) {
 	        this.vehicle = vehicle;
 	    }
+
+		public double getAverageSpeed() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
 	}
 
 
